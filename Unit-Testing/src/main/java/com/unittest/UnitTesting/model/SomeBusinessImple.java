@@ -1,4 +1,4 @@
-package com.unittest.UnitTesting.business;
+package com.unittest.UnitTesting.model;
 
 public class SomeBusinessImple {
     private SomeDataService dataService;

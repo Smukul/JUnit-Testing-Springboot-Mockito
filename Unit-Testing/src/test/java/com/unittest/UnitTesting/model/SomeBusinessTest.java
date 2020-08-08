@@ -1,8 +1,7 @@
-package com.unittest.UnitTesting.business;
+package com.unittest.UnitTesting.model;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 
 public class SomeBusinessTest {
 

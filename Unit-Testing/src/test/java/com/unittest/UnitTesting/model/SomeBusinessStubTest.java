@@ -1,4 +1,4 @@
-package com.unittest.UnitTesting.business;
+package com.unittest.UnitTesting.model;
 
 import org.junit.jupiter.api.Test;
 
