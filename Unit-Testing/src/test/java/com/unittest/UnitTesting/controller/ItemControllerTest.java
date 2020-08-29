@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
@@ -21,7 +22,7 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringBootTest(classes = ItemController.class)
+@WebMvcTest(controllers = ItemController.class)
 @AutoConfigureMockMvc
 public class ItemControllerTest {
 
@@ -31,7 +32,7 @@ public class ItemControllerTest {
     @MockBean
     ItemBusinessService businessService;
 
-    String expected  = "{\"id\":1,\"name\":\"dummy-name\",\"price\":50,\"quantity\":10}";
+    String expected  = "{\"id\":3,\"name\":\"Mock3\",\"price\":10,\"quantity\":2,\"value\":null}";
 
     @Test
     public void itemBusinessTest() throws Exception {
@@ -41,8 +42,8 @@ public class ItemControllerTest {
                 .accept(MediaType.APPLICATION_JSON);
 
         MvcResult result=  mockMvc.perform(request)
-                //.andExpect(status().isOk())
-                //.andExpect(content().string(expected)) //as here we  added assertion so below one is optional
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.content().string(expected)) //as here we  added assertion so below one is optional
                 .andReturn();
     }
 
