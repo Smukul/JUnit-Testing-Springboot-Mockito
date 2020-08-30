@@ -1,5 +1,11 @@
 package com.unittest.UnitTesting.model;
 
+import java.util.Arrays;
+import java.util.Optional;
+import java.util.OptionalInt;
+
+import static java.util.Arrays.stream;
+
 public class SomeBusinessImple {
     private SomeDataService dataService;
 
@@ -12,7 +18,9 @@ public class SomeBusinessImple {
         for(int n: numbers){
             sum  += n;
         }
-        return sum;
+        OptionalInt sums = stream(numbers).reduce(Integer::sum);
+        return sums.orElse(0);
+        //return sum;
     }
     public int sumNumbersUsingSomeService(){
         int sum=0;
