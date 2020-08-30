@@ -22,8 +22,9 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(controllers = ItemController.class)
+//@WebMvcTest(controllers = ItemController.class)
 @AutoConfigureMockMvc
+@SpringBootTest(webEnvironment= SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ItemControllerTest {
 
     @Autowired
@@ -54,27 +55,27 @@ public class ItemControllerTest {
                 .get("/item")
                 .accept(MediaType.APPLICATION_JSON);
 
-        /*MvcResult result=  mockMvc.perform(request)
+        MvcResult result=  mockMvc.perform(request)
                 .andExpect(status().isOk())
                 //.andExpect(content().string(expected)) //as here we  added assertion so below one is optional
-                .andReturn();*/
+                .andReturn();
     }
 
     @Test
     public void jsonAssert_StrictTrue() throws JSONException {
-        String actual  = "{\"id\":1,\"name\":\"dummy-name\",\"price\":50,\"quantity\":10}";
+        String actual  = "{\"id\":3,\"name\":\"Mock3\",\"price\":10,\"quantity\":2,\"value\":null}";
         JSONAssert.assertEquals(actual,expected,true);
     }
 
     @Test
     public void jsonAssert_StrictFalse() throws JSONException {
-        String actual  = "{\"id\":1,\"name\":\"dummy-name\"}";
+        String actual  = "{\"id\":3,\"name\":\"Mock3\"}";
         JSONAssert.assertEquals(actual,expected,false);
     }
 
     @Test
     public void jsonAssert_WithoutEscape() throws JSONException {
-        String actual  = "{id:1,name:dummy-name}";
+        String actual  = "{id:3,name:Mock3}";
         JSONAssert.assertEquals(actual,expected,false);
     }
 }
